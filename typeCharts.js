@@ -1,11 +1,11 @@
 var bCount = 0;
+var graphDiv;
 var barGraph = (function () {
-    function barGraph(divId, unitsmult, maxY) {
-        this.divId = divId;
-        this.unitsmult = unitsmult;
-        this.maxY = maxY;
-        var graphDiv = document.getElementById(this.divId);
-        console.log(graphDiv);
+    function barGraph(div) {
+        this.div = div;
+    }
+    barGraph.prototype.units = function (numOfUnits, maxY) {
+        graphDiv = document.getElementById(this.div);
         var scaleY = document.createElement("div");
         scaleY.id = "scale-y";
         graphDiv.appendChild(scaleY);
@@ -17,8 +17,8 @@ var barGraph = (function () {
         graphDiv.appendChild(tWrap);
         var height = parseInt($("#scale-y").css('height'));
         console.log(height);
-        var numofSpans = this.maxY / this.unitsmult;
-        var counts = height / numofSpans;
+        var numofSpans = numOfUnits;
+        var counts = maxY / numofSpans;
         console.log(counts);
         for(var i = 1; i <= numofSpans; i++) {
             var newSpan = document.createElement("div");
@@ -29,7 +29,7 @@ var barGraph = (function () {
             newSpan.className = "num-span";
             newSpan.style.top = (100 - ((i / numofSpans) * 100)) + "%";
         }
-    }
+    };
     return barGraph;
 })();
 var Bar = (function () {
@@ -39,10 +39,8 @@ var Bar = (function () {
         this.width = width;
         this.height = height;
         this.color = color;
-        var graphDiv = document.getElementById(this.div);
-        console.log(graphDiv);
     }
-    Bar.prototype.appendBar = function () {
+    Bar.prototype.appendToGraph = function () {
         this.numBar = bCount;
         bCount++;
         var numOfElements = document.getElementById(this.div).getElementsByClassName('bar-graph').length;
@@ -81,7 +79,7 @@ var Bar = (function () {
         title.className = 'title';
         title.appendChild(text);
         document.getElementById(tDiv).appendChild(title);
-        var left = (this.numBar * 3.15 + 1.85) + "em";
+        var left = (this.numBar * 5.15 + 1.85) + "em";
         title.style.left += left;
     };
     return Bar;
