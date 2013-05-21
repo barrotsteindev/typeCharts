@@ -6,29 +6,31 @@ define(["require", "exports"], function(require, exports) {
             this.div = div;
         }
         barGraph.prototype.units = function (numOfUnits, maxY) {
+            var frag = document.createDocumentFragment();
+            var fragment = document.createDocumentFragment();
             graphDiv = document.getElementById(this.div);
             var scaleY = document.createElement("div");
             scaleY.id = "scale-y";
-            graphDiv.appendChild(scaleY);
             var scaleX = document.createElement("div");
             scaleX.id = "scale-x";
-            graphDiv.appendChild(scaleX);
             var tWrap = document.createElement("div");
             tWrap.id = "tWrapper";
-            graphDiv.appendChild(tWrap);
-            var height = parseInt($("#scale-y").css('height'));
-            console.log(height);
             var numofSpans = numOfUnits;
             var counts = maxY / numofSpans;
             for(var i = 1; i <= numofSpans; i++) {
                 var newSpan = document.createElement("div");
                 var newNum = document.createTextNode((counts * i).toString());
+                scaleY.appendChild(newSpan);
                 newSpan.id = "span" + i;
                 newSpan.appendChild(newNum);
-                scaleY.appendChild(newSpan);
                 newSpan.className = "num-span";
                 newSpan.style.top = (100 - ((i / numofSpans) * 100)) + "%";
             }
+            frag.appendChild(scaleY);
+            frag.appendChild(scaleX);
+            frag.appendChild(tWrap);
+            graphDiv.appendChild(frag);
+            var height = parseInt($("#scale-y").css('height'));
         };
         return barGraph;
     })();
