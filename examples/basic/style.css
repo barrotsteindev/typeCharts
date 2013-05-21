@@ -1,0 +1,37 @@
+.bar-graph {
+	display: inline-block;
+	vertical-align: bottom;
+	margin-left: 1em;
+	transition: width 4s, height 4s, background-color 2s;
+}
+
+#wrapper {
+	display: inline-block;
+}
+
+#scale-y {
+	position: relative;
+	display: inline-block;
+	vertical-align: bottom;
+	margin-left: 0.25em;
+	width: 0.1em;
+	height: 25em;
+	background-color: black;
+}
+
+.num-span {
+	position: absolute;
+}
+
+.title {
+	position: relative;
+}
+
+#scale-x {
+	vertical-align: bottom;
+	margin-left: 0.25em;
+	width: 20em;
+	height: 0.1em;
+	background-color: black;
+}
+
