@@ -1,7 +1,7 @@
 define(["require", "exports", "typeCharts"], function(require, exports, __typeCharts__) {
     var typeCharts = __typeCharts__;
 
-    var graph = new typeCharts.barGraph("graph");
+    var graph = new typeCharts.barGraph("graph", 25, 20);
     var clicked = false;
     var i = 0;
     document.getElementById("draw").onclick = function () {

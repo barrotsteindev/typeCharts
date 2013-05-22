@@ -1,5 +1,5 @@
 import typeCharts = module("typeCharts")
-var graph = new typeCharts.barGraph("graph"); // insert the id of the div the graph will be drawn in
+var graph = new typeCharts.barGraph("graph", 25, 20); // insert the id of the div the graph will be drawn in. the heights in em, and the width in em
 var clicked = false;
 var i = 0;
 
