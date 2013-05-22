@@ -9,5 +9,5 @@ define(["require", "exports", "typeCharts"], function(require, exports, __typeCh
     firstBar.appendToGraph();
     secondBar.appendToGraph();
     thirdBar.appendToGraph();
-    secondBar.addTitle("Heighest", "tWrapper");
+    secondBar.addTitle("Highest", "tWrapper");
 })

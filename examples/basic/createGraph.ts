@@ -12,4 +12,4 @@ graph.units(8, 40); //8 is the number of stops that will be drawn on the y scale
         secondBar.appendToGraph();
         thirdBar.appendToGraph();
 
-        secondBar.addTitle("Heighest", "tWrapper"); // adds the title "Highest" below the graph on the x scale, and tWrapper is the div created for the titles under the bar charts.
+        secondBar.addTitle("Highest", "tWrapper"); // adds the title "Highest" below the graph on the x scale, and tWrapper is the div created for the titles under the bar charts.

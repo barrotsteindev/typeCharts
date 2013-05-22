@@ -19,12 +19,19 @@
 	background-color: black;
 }
 
+#tWrapper {
+	position: relative;;
+	margin-left: 0.25em;
+}
+
 .num-span {
 	position: absolute;
 }
 
 .title {
-	position: relative;
+	position: absolute;
+	text-align: center;
+	width: 4em;
 }
 
 #scale-x {

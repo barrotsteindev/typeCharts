@@ -7,7 +7,6 @@ define(["require", "exports"], function(require, exports) {
         }
         barGraph.prototype.units = function (numOfUnits, maxY) {
             var frag = document.createDocumentFragment();
-            var fragment = document.createDocumentFragment();
             graphDiv = document.getElementById(this.div);
             var scaleY = document.createElement("div");
             scaleY.id = "scale-y";
@@ -58,7 +57,6 @@ define(["require", "exports"], function(require, exports) {
                 if(!document.getElementById(this.name)) {
                     var scaleX = document.getElementById("scale-x");
                     document.getElementById(this.div).insertBefore(bar, scaleX);
-                    var x = bar.clientHeight;
                     bar.className = 'bar-graph';
                     bar.style.width = (this.width).toString() + "em";
                     bar.style.height = (this.height).toString() + "em";
@@ -82,7 +80,7 @@ define(["require", "exports"], function(require, exports) {
             title.className = 'title';
             title.appendChild(text);
             document.getElementById("tWrapper").appendChild(title);
-            var left = (this.numBar * 3.65 + 2.85) + "em";
+            var left = (this.numBar * 5 + 1.5) + "em";
             title.style.left += left;
         };
         return Bar;

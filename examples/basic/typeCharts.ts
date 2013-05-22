@@ -1,6 +1,5 @@
 var bCount = 0; //graph counter
 var graphDiv; //the id of the div in which the graph will be 
-
  export class barGraph {
 
     units(numOfUnits: number, maxY: number)
@@ -8,7 +7,6 @@ var graphDiv; //the id of the div in which the graph will be
 
     	//add units to the graph
     	var frag = document.createDocumentFragment();
-    	var fragment = document.createDocumentFragment();
     	graphDiv = document.getElementById(this.div);
     	var scaleY = document.createElement("div");
 		scaleY.id = "scale-y";
@@ -73,7 +71,6 @@ export class Bar {
 			{
 				var scaleX = document.getElementById("scale-x");
 				document.getElementById(this.div).insertBefore(bar, scaleX);
-				var x = bar.clientHeight;
 				bar.className = 'bar-graph';
 				bar.style.width = (this.width).toString() + "em";
 				bar.style.height = (this.height).toString() + "em";
@@ -103,9 +100,8 @@ export class Bar {
 		title.className = 'title';
 		title.appendChild(text);
 		document.getElementById("tWrapper").appendChild(title);
-		var left = (this.numBar * 3.65 + 2.85) + "em";
+		var left = (this.numBar * 5 + 1.5) + "em";
 		title.style.left += left;
-
 	}
 }
 
