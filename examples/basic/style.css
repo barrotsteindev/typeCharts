@@ -9,13 +9,12 @@
 	display: inline-block;
 }
 
-#scale-y {
+.scale-y {
 	position: relative;
 	display: inline-block;
 	vertical-align: bottom;
 	margin-left: 0.25em;
 	width: 0.1em;
-	height: 25em;
 	background-color: black;
 }
 
@@ -34,10 +33,9 @@
 	width: 4em;
 }
 
-#scale-x {
+.scale-x {
 	vertical-align: bottom;
 	margin-left: 0.25em;
-	width: 20em;
 	height: 0.1em;
 	background-color: black;
 }
