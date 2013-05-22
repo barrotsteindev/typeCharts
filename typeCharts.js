@@ -1,17 +1,26 @@
 define(["require", "exports"], function(require, exports) {
     var bCount = 0;
     var graphDiv;
+    var height;
+    var graphMaxY;
     var barGraph = (function () {
-        function barGraph(div) {
+        function barGraph(div, height, width) {
             this.div = div;
+            this.height = height;
+            this.width = width;
         }
         barGraph.prototype.units = function (numOfUnits, maxY) {
+            graphMaxY = maxY;
             var frag = document.createDocumentFragment();
             graphDiv = document.getElementById(this.div);
             var scaleY = document.createElement("div");
             scaleY.id = "scale-y";
+            scaleY.className = 'scale-y';
+            scaleY.style.height = (this.height).toString() + "em";
             var scaleX = document.createElement("div");
             scaleX.id = "scale-x";
+            scaleX.className = "scale-x";
+            scaleX.style.width = (this.width).toString() + "em";
             var tWrap = document.createElement("div");
             tWrap.id = "tWrapper";
             var numofSpans = numOfUnits;
@@ -29,19 +38,22 @@ define(["require", "exports"], function(require, exports) {
             frag.appendChild(scaleX);
             frag.appendChild(tWrap);
             graphDiv.appendChild(frag);
-            var height = parseInt($("#scale-y").css('height'));
+            height = parseInt(scaleY.style.height);
+            console.log(height);
         };
         return barGraph;
     })();
     exports.barGraph = barGraph;    
     var Bar = (function () {
-        function Bar(div, name, width, height, color) {
+        function Bar(div, name, width, bHeight, color) {
             this.div = div;
             this.name = name;
             this.width = width;
-            this.height = height;
+            this.bHeight = bHeight;
             this.color = color;
             this.barName = this.name;
+            this.heightPercentage = (this.bHeight / graphMaxY) * height;
+            console.log(this.heightPercentage);
         }
         Bar.prototype.appendToGraph = function () {
             this.numBar = bCount;
@@ -59,7 +71,7 @@ define(["require", "exports"], function(require, exports) {
                     document.getElementById(this.div).insertBefore(bar, scaleX);
                     bar.className = 'bar-graph';
                     bar.style.width = (this.width).toString() + "em";
-                    bar.style.height = (this.height).toString() + "em";
+                    bar.style.height = (this.heightPercentage).toString() + "em";
                     bar.style.marginLeft = "1.5em";
                 } else {
                     console.log("an element with the id of " + this.name + " already exsits");
@@ -71,7 +83,7 @@ define(["require", "exports"], function(require, exports) {
                 var x = bar.clientHeight;
                 bar.className = 'bar-graph';
                 bar.style.width = (this.width).toString() + "em";
-                bar.style.height = (this.height).toString() + "em";
+                bar.style.height = (this.heightPercentage).toString() + "em";
             }
         };
         Bar.prototype.addTitle = function (input, tDiv) {

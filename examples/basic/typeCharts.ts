@@ -1,17 +1,24 @@
 var bCount = 0; //graph counter
 var graphDiv; //the id of the div in which the graph will be 
+var height;
+var graphMaxY;
  export class barGraph {
 
     units(numOfUnits: number, maxY: number)
     {
 
     	//add units to the graph
+    	graphMaxY = maxY;
     	var frag = document.createDocumentFragment();
     	graphDiv = document.getElementById(this.div);
     	var scaleY = document.createElement("div");
 		scaleY.id = "scale-y";
+		scaleY.className = 'scale-y';
+		scaleY.style.height = (this.height).toString() + "em";
 		var scaleX = document.createElement("div");
 		scaleX.id = "scale-x";
+		scaleX.className = "scale-x";
+		scaleX.style.width = (this.width).toString() + "em";
 
 
 		var tWrap = document.createElement("div");
@@ -33,22 +40,26 @@ var graphDiv; //the id of the div in which the graph will be
 		frag.appendChild(scaleX);
 		frag.appendChild(tWrap);
 		graphDiv.appendChild(frag);
-		var height = parseInt($("#scale-y").css('height'));
+		height = parseInt(scaleY.style.height);
+		console.log(height);
     }
 
-	constructor(public div: string) {
+	constructor(public div: string, public height: number, public width: number) {
 	};
 
 }
 
 export class Bar {
 
+	public heightPercentage: number;
 	public numBar: number;
 	public barName: string;
 	public numOfElements: number;
 
-	constructor(public div: string, public name: string, public width: number, public height: number, public color?: string) {
+	constructor(public div: string, public name: string, public width: number, public bHeight: number, public color?: string) {
 	    this.barName = this.name;
+	    this.heightPercentage = (this.bHeight/graphMaxY) * height;
+	    console.log(this.heightPercentage);
 	};
 
    
@@ -73,7 +84,7 @@ export class Bar {
 				document.getElementById(this.div).insertBefore(bar, scaleX);
 				bar.className = 'bar-graph';
 				bar.style.width = (this.width).toString() + "em";
-				bar.style.height = (this.height).toString() + "em";
+				bar.style.height = (this.heightPercentage).toString() + "em";
 				bar.style.marginLeft = "1.5em";
 			}
 			else
@@ -89,7 +100,7 @@ export class Bar {
 			var x = bar.clientHeight;
 			bar.className = 'bar-graph';
 			bar.style.width = (this.width).toString() + "em";
-			bar.style.height = (this.height).toString() + "em";
+			bar.style.height = (this.heightPercentage).toString() + "em";
 		}
 	}
 
